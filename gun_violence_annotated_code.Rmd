@@ -248,7 +248,17 @@ getFunding <- function(terms) {
 mortality$Total.Funding <- NA
 mortality$Total.Projects <- NA
 for (row in 1:nrow(mortality)) {
-  result <- getFunding(mortality$MeSH.Children[[row]])
+  # FedReporter match for "Fires" is "FIRE - DISASTERS"
+  # FedReporter match for "ALZHEIMER DISEASE" is "ALZHEIMER'S DISEASE"
+  terms <- mortality$MeSH.Children[[row]]
+  # append new terms
+  if (row == which(mortality$Abbreviation=="Alzheimer disease")) {
+    terms[length(terms)+1] <- "ALZHEIMER'S DISEASE"
+  }
+  if (row == which(mortality$Abbreviation=="Fires")) {
+    terms[length(terms)+1] <- "FIRE - DISASTERS"
+  }
+  result <- getFunding(terms)
   mortality$Total.Funding[row] <- result[1]
   mortality$Total.Projects[row] <- result[2]
 }
