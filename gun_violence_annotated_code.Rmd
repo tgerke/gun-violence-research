@@ -221,20 +221,8 @@ for (causeNum in 1:length(mortality$MeSH.Children)) {
 
 # For each bundled set of children queries, search Federal RePORTER and return total funding
 
-getFunding <- function(terms) {
-  funding = 0
-  projects = 0
-  for (row in 1:nrow(FedReporter)) {
-    if (length(intersect(terms, FedReporter$Project_Terms[row][[1]])) != 0) {
-      funding = funding + FedReporter$FY_Total_Cost[row]
-      projects = projects + 1
-    }
-  }
-  return(c(funding, projects))
-}
-
-mortality$Total.Funding <- NA
-mortality$Total.Projects <- NA
+mortality$Total.Funding <- 0
+mortality$Total.Projects <- 0
 for (row in 1:nrow(mortality)) {
   # FedReporter match for "Fires" is "FIRE - DISASTERS"
   # FedReporter match for "ALZHEIMER DISEASE" is "ALZHEIMER'S DISEASE"
@@ -246,9 +234,11 @@ for (row in 1:nrow(mortality)) {
   if (row == which(mortality$Abbreviation=="Fires")) {
     terms[length(terms)+1] <- "FIRE - DISASTERS"
   }
-  result <- getFunding(terms)
-  mortality$Total.Funding[row] <- result[1]
-  mortality$Total.Projects[row] <- result[2]
+  matchTerm <- vapply(FedReporter$Project_Terms, function(x) {
+   ifelse(length(intersect(terms, unlist(x)) != 0), TRUE, FALSE)
+  }, TRUE, USE.NAMES=FALSE)
+  mortality$Total.Funding[row] <- sum(FedReporter$FY_Total_Cost[matchTerm])
+  mortality$Total.Projects[row] <- sum(matchTerm)
 }
 
 data <- select(mortality, Cause, Abbreviation, Crude.Rate, Publications, Total.Funding, Total.Projects)
