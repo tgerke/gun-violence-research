@@ -76,9 +76,9 @@ for (row in 1:nrow(mortality)) {
   }
 }
 
-# convert multiple MeSH queries into list
+# convert multiple MeSH queries into list, remove leading/trailing whitespace, convert to upper
 convertList <- function(terms) {
-  as.list(toupper(strsplit(terms, ";")[[1]]))
+  as.list(toupper(trimws(strsplit(terms, ";")[[1]])))
 }
 mortality$MeSH.Terms <- sapply(mortality$MeSH.Terms, convertList)
 mortality$MeSH.IDs <- sapply(mortality$MeSH.IDs, convertList)
@@ -142,14 +142,6 @@ Research funding data from 2004 to 2015 (all years available) was accessed from 
 #### Code to import Federal RePORTER funding data  
 ```{r}
 # Import Federal ExPORTER data
-
-# Code to download zip csv files from url
-temp <- tempfile()
-
-download.file(paste('https://federalreporter.nih.gov/FileDownload/',
-                    'DownloadFile?fileToDownload=FedRePORTER_PRJ_C_FY2004.zip', sep =''),temp)
-data <- read.csv(unz(temp, "FedRePORTER_PRJ_C_FY2004.csv"), stringsAsFactors = FALSE)
-unlink(temp)
 
 FedReporter <- NA
 for(year in 2004:2015) {
@@ -233,7 +225,7 @@ getFunding <- function(terms) {
   funding = 0
   projects = 0
   for (row in 1:nrow(FedReporter)) {
-    if (length(intersect(terms, trimws(FedReporter$Project_Terms[row][[1]]))) != 0) {
+    if (length(intersect(terms, FedReporter$Project_Terms[row][[1]])) != 0) {
       funding = funding + FedReporter$FY_Total_Cost[row]
       projects = projects + 1
     }
