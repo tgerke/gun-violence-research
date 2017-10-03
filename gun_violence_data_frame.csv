@@ -1,0 +1,31 @@
+"","Cause","Abbreviation","Crude.Rate","Publications","Total.Funding","Total.Projects"
+"1","Non-Injury","Heart disease",201.54,367021,14321858796,34260
+"2","Non-Injury","Cancer",186.45,1108824,27016486769,74446
+"3","Non-Injury","Lung disease",44.68,266455,14981871266,35900
+"4","Non-Injury","Cerebrovascular disease",43.91,137724,9437338094,22925
+"5","Non-Injury","Alzheimer disease",26.02,41112,7696955032,21759
+"6","Non-Injury","Diabetes",23.76,161406,15391928292,38609
+"7","Non-Injury","Influenza & pneumonia",18.07,49092,1961448140,5251
+"8","Non-Injury","Nephritis, nephrotic syndrome and nephrosis",15.21,19643,734164560,2110
+"9","Injury","Poisoning",13.62,40032,706501911,1703
+"10","Injury","Motor vehicles",12.33,21068,465306940,1418
+"11","Non-Injury","Sepsis",11.63,44742,3953262529,9631
+"12","Injury","Gun violence",10.4,1780,26985174,69
+"13","Non-Injury","Liver disease",10.3,174556,5816305613,14451
+"14","Non-Injury","Hypertension",8.67,71727,6061443473,16143
+"15","Injury","Falls",8.45,12278,3474852,12
+"16","Non-Injury","Parkinson disease",7.08,27334,4131670585,12379
+"17","Non-Injury","Aspiration",5.67,2497,29703780,109
+"18","Injury","Suffocation",5.17,1526,150602842,285
+"19","Non-Injury","HIV",3.14,48165,25335507032,44871
+"20","Non-Injury","Intestinal infection",2.8,15062,578223980,1329
+"21","Non-Injury","Atherosclerosis",2.67,26933,5287280680,12904
+"22","Non-Injury","Viral hepatitis",2.39,51067,2078698410,5078
+"23","Non-Injury","Anemia",1.57,40893,2703174544,6598
+"24","Injury","Drowning",1.37,1056,36997030,115
+"25","Injury","Fires",1.08,3928,1559007376,4089
+"26","Non-Injury","Biliary tract disease",1.07,32029,412671814,1116
+"27","Non-Injury","Malnutrition",1.02,31760,2617357039,7137
+"28","Non-Injury","Peptic ulcer",1.02,8620,150842111,419
+"29","Injury","Penetrating Wounds",0.88,10828,99295436,176
+"30","Non-Injury","Hernia",0.59,22050,111951630,286
