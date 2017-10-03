@@ -129,12 +129,8 @@ getPubmedTrend <- function(query, minYear=2004, maxYear=2015) {
 }
 
 # For each cause of death, run PubMed query and sum total results over 2004-2015
-mortality$Publications <- NA
-x = 1
-for(query in mortality$PubMed.Query) {
-  mortality$Publications[x] <- colSums(getPubmedTrend(query, 2004, 2015))[2]
-  x=x+1
-}  
+mortality$Publications <- sapply(mortality$PubMed.Query, 
+                                 function(x) colSums(getPubmedTrend(x, 2004, 2015))[2])
 ```
     
 ****
