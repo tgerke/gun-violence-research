@@ -236,9 +236,8 @@ for (causeNum in 1:length(mortality$MeSH.Children)) {
 getFunding <- function(terms) {
   funding = 0
   projects = 0
-  row = 1
   for (row in 1:nrow(FedReporter)) {
-    if (length(intersect(terms, FedReporter$Project_Terms[row][[1]])) != 0) {
+    if (length(intersect(terms, trimws(FedReporter$Project_Terms[row][[1]]))) != 0) {
       funding = funding + FedReporter$FY_Total_Cost[row]
       projects = projects + 1
     }
