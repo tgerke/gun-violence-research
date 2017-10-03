@@ -115,14 +115,14 @@ getPubmedTrend <- function(query, minYear=2004, maxYear=2015) {
   # encode query as a URL
   query <- URLencode(query)
   curl <- getCurlHandle()
-  output <- data.frame(NULL)
+  output <- data.frame(Year=minYear:maxYear, Count=0)
   # retrieve counts for each year in range
   for(i in minYear:maxYear) {
     query_year <- paste(query, '+AND+', i, '%5Bppdat%5D', sep='')
     result <- getURL(paste(pubmed, query_year, sep = ''), curl = curl)
     result <- xmlTreeParse(result, asText = TRUE)
     count <- as.numeric(xmlValue(result[['doc']][['eSearchResult']][['Count']]))
-    output <- rbind(output, data.frame('Year' = i, 'Count' = count))
+    output$Count[output$Year==i] <- count
   }
   
   return(output)
