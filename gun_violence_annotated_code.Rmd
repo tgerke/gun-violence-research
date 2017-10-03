@@ -143,7 +143,7 @@ Research funding data from 2004 to 2015 (all years available) was accessed from 
 ```{r}
 # Import Federal ExPORTER data
 
-FedReporter <- NA
+FedReporter <- NULL
 for(year in 2004:2015) {
   temp <- tempfile()
   download.file(paste('https://federalreporter.nih.gov/FileDownload/',
